@@ -1,8 +1,6 @@
 package se.liu.ida.tdp024.account.data.impl.db.facade;
 
-import java.security.Provider.Service;
 import java.util.List;
-import java.util.ServiceConfigurationError;
 import javax.persistence.EntityManager;
 import se.liu.ida.tdp024.account.data.api.entity.Account;
 import se.liu.ida.tdp024.account.data.api.facade.AccountEntityFacade;
@@ -12,12 +10,12 @@ import se.liu.ida.tdp024.account.util.http.HTTPHelper;
 import se.liu.ida.tdp024.account.util.http.HTTPHelperImpl;
 import se.liu.ida.tdp024.account.util.json.AccountJsonSerializer;
 import se.liu.ida.tdp024.account.util.json.AccountJsonSerializerImpl;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Query;
+import se.liu.ida.tdp024.account.data.api.entity.Transaction;
 
 public class AccountEntityFacadeDB implements AccountEntityFacade {
     private static final AccountJsonSerializer jsonSerializer = new AccountJsonSerializerImpl();
@@ -139,7 +137,7 @@ public class AccountEntityFacadeDB implements AccountEntityFacade {
     }
 
     @Override
-    public List<Account> transactions(int id) {
+    public List<Transaction> transactions() {
         EntityManager em = EMF.getEntityManager();
         
         try{
@@ -151,5 +149,4 @@ public class AccountEntityFacadeDB implements AccountEntityFacade {
             em.close();
         }
     }
-    
 }

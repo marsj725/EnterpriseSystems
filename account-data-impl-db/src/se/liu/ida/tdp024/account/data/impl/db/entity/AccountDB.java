@@ -3,6 +3,7 @@ package se.liu.ida.tdp024.account.data.impl.db.entity;
 import java.util.List;
 import javax.persistence.OneToMany;
 import se.liu.ida.tdp024.account.data.api.entity.Account;
+import se.liu.ida.tdp024.account.data.api.entity.Transaction;
 
 public class AccountDB implements Account {
     private long id;
@@ -12,7 +13,7 @@ public class AccountDB implements Account {
     private int holdings;
     
     @OneToMany(mappedBy = "account", targetEntity = AccountDB.class)
-    private List<transactions> transactions;
+    private List<Transaction> transactions;
     
     @Override
     public long getId() {
