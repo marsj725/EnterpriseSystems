@@ -14,7 +14,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.Query;
 import se.liu.ida.tdp024.account.data.api.entity.Transaction;
 
 public class AccountEntityFacadeDB implements AccountEntityFacade {
@@ -32,7 +31,8 @@ public class AccountEntityFacadeDB implements AccountEntityFacade {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private long accountId;
+    private long transactionId;
     
     @ManyToOne(targetEntity = AccountDB.class)
     private Account account;
@@ -53,7 +53,7 @@ public class AccountEntityFacadeDB implements AccountEntityFacade {
             Account user = jsonSerializer.fromJson(userResponse, Account.class);
             Account banken = jsonSerializer.fromJson(bankResponse, Account.class);
             
-            account.setId(id);
+            account.setAccountId(accountId);
             account.setBankKey(banken.getBankKey());
             account.setHoldings(0);
             account.setPersonalKey(user.getPersonalKey());
@@ -123,6 +123,12 @@ public class AccountEntityFacadeDB implements AccountEntityFacade {
             temp = em.find(Account.class, id);
             tempHoldings = temp.getHoldings()+krediteras;
             temp.setHoldings(tempHoldings);
+            
+            Transaction tempTransaction = null;
+            tempTransaction.setAmount(krediteras);
+            tempTransaction.setTransactionId(transactionId);
+            
+            temp.addTransaction(tempTransaction);
             em.merge(temp);
             em.getTransaction().commit();
             return "OK";
@@ -139,10 +145,12 @@ public class AccountEntityFacadeDB implements AccountEntityFacade {
     @Override
     public List<Transaction> transactions() {
         EntityManager em = EMF.getEntityManager();
-        
+        Account tempAccount = null;
         try{
-            Query query = em.createQuery("SELECT * FROM AccountDB where id = " + id);
-            return query.getResultList();
+       
+            tempAccount = em.find(Account.class, id);
+
+            return tempAccount.getTransactions();
         }catch(Exception e){
             return null;
         }finally{

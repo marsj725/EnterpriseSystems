@@ -6,19 +6,16 @@
 package se.liu.ida.tdp024.account.data.api.entity;
 
 import java.io.Serializable;
-import java.util.List;
 
 public interface Transaction extends Serializable {
-    public void setId(int id);
-    public int getId();
+    public void setTransactionId(long id);
+    public long getTransactionId();
     public String getType();
     public void setType(String type);
     public int getAmount();
-    public void setAmount();
-    public String setDate();
-    public void getDate();
+    public void setAmount(int amount);
+    public String getDate();
+    public void setDate(String date);
     public String getStatus();
-    public void setStatus();
-    public List<Account> getAccount();
-    public void setAccount(List<Account> account);
+    public void setStatus(String status);
 }
