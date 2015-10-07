@@ -19,16 +19,7 @@ import se.liu.ida.tdp024.account.data.api.entity.Transaction;
 public class AccountEntityFacadeDB implements AccountEntityFacade {
     private static final AccountJsonSerializer jsonSerializer = new AccountJsonSerializerImpl();
     private static final HTTPHelper httpHelper = new HTTPHelperImpl();
-
-    //Account logger
     
-    /**
-     *
-     * @param accountType
-     * @param name
-     * @param bank
-     * @return
-     */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long accountId;
@@ -38,14 +29,14 @@ public class AccountEntityFacadeDB implements AccountEntityFacade {
     private Account account;
         
     @Override
-    public String create(String accountType, String name, String bank){
+    public long create(String accountType, String name, String bank){
         EntityManager em = EMF.getEntityManager();
         String personalKey = null;
         int holdings;
+        Account account = new AccountDB();
         
         try{
             em.getTransaction().begin();
-            Account account = new AccountDB();
             
             String bankResponse = httpHelper.get("http://enterprise-systems.appspot.com/bank" + "/find.name/", "name", bank);
             String userResponse = httpHelper.get("http://enterprise-systems.appspot.com/person" + "/find.name/", "name", name);         
@@ -53,7 +44,7 @@ public class AccountEntityFacadeDB implements AccountEntityFacade {
             Account user = jsonSerializer.fromJson(userResponse, Account.class);
             Account banken = jsonSerializer.fromJson(bankResponse, Account.class);
             
-            account.setAccountId(accountId);
+            account.setId(accountId);
             account.setBankKey(banken.getBankKey());
             account.setHoldings(0);
             account.setPersonalKey(user.getPersonalKey());
@@ -61,10 +52,11 @@ public class AccountEntityFacadeDB implements AccountEntityFacade {
             
             em.persist(account);
             em.getTransaction().commit();
-            return "OK";
+            return accountId;
+            
             
         }catch (Exception e){
-            return "FAILED";
+            return 0;
         }finally{
             if(em.getTransaction().isActive()){
                 em.getTransaction().rollback();
@@ -73,7 +65,7 @@ public class AccountEntityFacadeDB implements AccountEntityFacade {
     }
 
     @Override
-    public String find(String name) {
+    public Account find(String name) {
         EntityManager em = EMF.getEntityManager();
         String response = null;
         Account temp = null;
@@ -81,9 +73,9 @@ public class AccountEntityFacadeDB implements AccountEntityFacade {
             temp = em.find(Account.class, name);
             AccountJsonSerializer JSONConv = new AccountJsonSerializerImpl();
             response = JSONConv.toJson(temp);
-            return response;
+            return temp;
         }catch(Exception e){
-            return "[]";
+            return null;
         }finally{
             em.close();
         }
@@ -148,7 +140,6 @@ public class AccountEntityFacadeDB implements AccountEntityFacade {
         Account tempAccount = null;
         try{
        
-            tempAccount = em.find(Account.class, id);
 
             return tempAccount.getTransactions();
         }catch(Exception e){

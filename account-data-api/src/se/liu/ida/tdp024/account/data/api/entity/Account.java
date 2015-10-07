@@ -4,9 +4,9 @@ import java.io.Serializable;
 import java.util.List;
 
 public interface Account extends Serializable {
-    public long getAccountId();
+    public long getId();
     
-    public void setAccountId(long id);
+    public void setId(long id);
     
     public String getPersonalKey();
     

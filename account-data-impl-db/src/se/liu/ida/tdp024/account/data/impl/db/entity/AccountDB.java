@@ -1,12 +1,21 @@
 package se.liu.ida.tdp024.account.data.impl.db.entity;
 
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import se.liu.ida.tdp024.account.data.api.entity.Account;
 import se.liu.ida.tdp024.account.data.api.entity.Transaction;
 
+@Entity
 public class AccountDB implements Account, Transaction {
-    private long accountId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+    
     private long transactionId;
     private String accountType;
     private String personalKey;
@@ -15,19 +24,21 @@ public class AccountDB implements Account, Transaction {
     private int holdings;
     private int amount;
     
-    @OneToMany(mappedBy = "account", targetEntity = AccountDB.class)
+
+    
+    @OneToMany(targetEntity = AccountDB.class)
     private List<Transaction> transactions;
     private String date;
     private String status;
     
     @Override
-    public long getAccountId() {
-        return accountId;
+    public long getId() {
+        return id;
     }
 
     @Override
-    public void setAccountId(long id) {
-        this.accountId = id;
+    public void setId(long id) {
+        this.id = id;
     }
 
     @Override
