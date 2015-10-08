@@ -120,7 +120,7 @@ public class AccountEntityFacadeDB implements AccountEntityFacade {
             tempTransaction.setAmount(krediteras);
             tempTransaction.setTransactionId(transactionId);
             
-            temp.addTransaction(tempTransaction);
+
             em.merge(temp);
             em.getTransaction().commit();
             return "OK";
@@ -130,21 +130,6 @@ public class AccountEntityFacadeDB implements AccountEntityFacade {
             if (em.getTransaction().isActive()) {
                 em.getTransaction().rollback();
             }
-            em.close();
-        }
-    }
-
-    @Override
-    public List<Transaction> transactions() {
-        EntityManager em = EMF.getEntityManager();
-        Account tempAccount = null;
-        try{
-       
-
-            return tempAccount.getTransactions();
-        }catch(Exception e){
-            return null;
-        }finally{
             em.close();
         }
     }

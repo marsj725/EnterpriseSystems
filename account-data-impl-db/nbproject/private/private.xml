@@ -3,11 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/marsj725/TDP024/EnterpriseSystems/account-data-impl-db/src/se/liu/ida/tdp024/account/data/impl/db/facade/AccountEntityFacadeDB.java</file>
-            <file>file:/home/marsj725/TDP024/EnterpriseSystems/account-data-impl-db/src/se/liu/ida/tdp024/account/data/impl/db/util/EMF.java</file>
-            <file>file:/home/marsj725/TDP024/EnterpriseSystems/account-data-impl-db/src/se/liu/ida/tdp024/account/data/impl/db/util/StorageFacadeDB.java</file>
-            <file>file:/home/marsj725/TDP024/EnterpriseSystems/account-data-impl-db/src/se/liu/ida/tdp024/account/data/impl/db/entity/AccountDB.java</file>
-            <file>file:/home/marsj725/TDP024/EnterpriseSystems/account-data-impl-db/src/se/liu/ida/tdp024/account/data/impl/db/facade/Testfacade.java</file>
+            <file>file:/home/masj/NetBeansProjects/account-data-impl-db/src/se/liu/ida/tdp024/account/data/impl/db/facade/Testfacade.java</file>
+            <file>file:/home/masj/NetBeansProjects/account-data-impl-db/src/se/liu/ida/tdp024/account/data/impl/db/entity/AccountDB.java</file>
+            <file>file:/home/masj/NetBeansProjects/account-data-impl-db/src/se/liu/ida/tdp024/account/data/impl/db/facade/AccountEntityFacadeDB.java</file>
         </group>
     </open-files>
 </project-private>

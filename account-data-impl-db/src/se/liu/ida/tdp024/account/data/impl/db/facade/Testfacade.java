@@ -6,13 +6,11 @@
 package se.liu.ida.tdp024.account.data.impl.db.facade;
 
 import java.util.List;
-import java.util.ServiceConfigurationError;
 import javax.persistence.EntityManager;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.Query;
 import se.liu.ida.tdp024.account.data.api.entity.Account;
 import se.liu.ida.tdp024.account.data.api.entity.Transaction;
+import se.liu.ida.tdp024.account.data.api.entity.User;
 import se.liu.ida.tdp024.account.data.api.facade.AccountEntityFacade;
 import se.liu.ida.tdp024.account.data.impl.db.entity.AccountDB;
 import se.liu.ida.tdp024.account.data.impl.db.util.EMF;
@@ -26,17 +24,21 @@ import se.liu.ida.tdp024.account.util.json.AccountJsonSerializerImpl;
  * @author marsj725
  */
 public class Testfacade implements AccountEntityFacade {
-    
+    private static final HTTPHelper httpHelper = new HTTPHelperImpl();
+    private static final AccountJsonSerializer jsonSerializer = new AccountJsonSerializerImpl();   
 
     
-    //AccountJsonSerializer jsonSerializer = new AccountJsonSerializerImpl();
-    HTTPHelper httpHelper = new HTTPHelperImpl();
+    //AccountJsonSerializer jsonSerializer = new AccountJsonSerializerImpl() {};
+    //HTTPHelper httpHelper = new HTTPHelperImpl();
     @Override
-    public long create(String accountType, String name, String bank){
+    public Account create(String accountType, String name, String bank){
 
         EntityManager em = EMF.getEntityManager();
         String personalKey = null;
         int holdings;
+            
+            
+        //Account accountDTos = jsonSerializer.fromJson(userResponse, AccountDB.class);
         
         
         try{
@@ -45,29 +47,21 @@ public class Testfacade implements AccountEntityFacade {
             account.setHoldings(0);
             account.setAccountType(accountType);
             
-           // String bankResponse = httpHelper.get("http://enterprise-systems.appspot.com/bank" + "/find.name/", "name", bank);
-           // String userResponse = httpHelper.get("http://enterprise-systems.appspot.com/person" + "/find.name/", "name", name);         
+            String bankResponse = httpHelper.get("http://enterprise-systems.appspot.com/bank" + "/find.name/", "name", bank);
+            String userResponse = httpHelper.get("http://enterprise-systems.appspot.com/person" + "/find.name/", "name", name);     
+            User user = jsonSerializer.fromJson(userResponse, UserType.class);
+            User banks = jsonSerializer.fromJson(bankResponse, UserType.class);
+            account.setPersonalKey(user.getKey());
+            account.setBankKey(banks.getKey());
             
-           // Account user = jsonSerializer.fromJson(userResponse, Account.class);
-           // Account banken = jsonSerializer.fromJson(bankResponse, Account.class);
-            
-            
-           // account.setBankKey(banken.getBankKey());
-            
-           // account.setPersonalKey(user.getPersonalKey());
-            
-            
-            //em.persist(account);
-            //em.getTransaction().commit();
-            //em.persist(account);
+            em.persist(account);
             em.getTransaction().commit();
-            System.out.println(account.getId());
-            return account.getId();
+            
+            return account;
         }catch (Exception e){
-            //throw new ServiceConfigurationError("Commit fails!");
             Account account = new AccountDB();
-            account.setId(666);
-            return account.getId();
+            account.setId(999);
+            return account;
         }finally{
             if(em.getTransaction().isActive()){
                 em.getTransaction().rollback();
@@ -82,13 +76,15 @@ public class Testfacade implements AccountEntityFacade {
        String response = null;
        Account temp = new AccountDB();
        try{
-            temp = em.find(AccountDB.class, name);
-
+            String userResponse = httpHelper.get("http://enterprise-systems.appspot.com/person" + "/find.name/", "name", name);     
+            User user = jsonSerializer.fromJson(userResponse, UserType.class);
             
-            //AccountJsonSerializer JSONConv = new AccountJsonSerializerImpl();
-            //response = JSONConv.toJson(temp);
-            return temp;
+            Query query = em.createQuery("SELECT c FROM AccountDB c WHERE c.personalKey = :personalKey ");
+            query.setParameter("personalKey", user.getKey());
+
+           return (Account)query.getSingleResult();
         }catch(Exception e){
+            
             temp.setId(999);
             return temp;
         }finally{
@@ -103,11 +99,6 @@ public class Testfacade implements AccountEntityFacade {
 
     @Override
     public String kredit(int id, int krediteras) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Transaction> transactions() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

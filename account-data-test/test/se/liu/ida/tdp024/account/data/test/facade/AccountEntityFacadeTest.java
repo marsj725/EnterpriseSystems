@@ -26,14 +26,14 @@ public class AccountEntityFacadeTest {
     public void testCreate() {
         
         String accountType = "SAVINGS";
-        String name = "Martin Sjödin Jonsson";
+        String name = "Marcus Bendtsen";
         String bank = "SWEDBANK";
-        long id = accountEntityFacade.create(accountType, name, bank);
+        Account konto = accountEntityFacade.create(accountType, name, bank);
         
         Account account = accountEntityFacade.find(name);
-        System.out.println(id+" :: "+account.getId());
-        Assert.assertEquals(id, account.getId());
-
-        //Assert.assertEquals(accountType, account.getAccountType());
+        System.out.println(konto.getId()+" :: "+account.getId());
+        Assert.assertEquals(konto.getId(), account.getId());
+        Assert.assertEquals(accountType, account.getAccountType());
+        Assert.assertEquals(konto.getBankKey(), account.getBankKey());
     }
 }
