@@ -1,28 +1,29 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package se.liu.ida.tdp024.account.data.impl.db.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import se.liu.ida.tdp024.account.data.api.entity.Transaction;
 
-/**
- *
- * @author masj
- */
+@Entity
 public class TransactionDB implements Transaction {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private int amount;
-    private String type,date,status;
+                 
+    private long accountid,amount;
+    private String type;
+    private String date;
+    private String status;
     
     @Override
-    public void setTransactionId(long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
     @Override
-    public long getTransactionId() {
+    public long getId() {
         return id;
     }
 
@@ -37,12 +38,12 @@ public class TransactionDB implements Transaction {
     }
 
     @Override
-    public int getAmount() {
+    public long getAmount() {
         return amount;
     }
 
     @Override
-    public void setAmount(int amount) {
+    public void setAmount(long amount) {
         this.amount = amount;
     }
 
@@ -64,6 +65,16 @@ public class TransactionDB implements Transaction {
     @Override
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    @Override
+    public void setAccountId(long accountid) {
+        this.accountid = accountid;
+    }
+
+    @Override
+    public long getAccountId() {
+        return accountid;
     }
     
 }
