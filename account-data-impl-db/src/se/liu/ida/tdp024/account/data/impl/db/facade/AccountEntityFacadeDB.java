@@ -5,11 +5,9 @@
  */
 package se.liu.ida.tdp024.account.data.impl.db.facade;
 
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import se.liu.ida.tdp024.account.data.api.entity.Account;
-import se.liu.ida.tdp024.account.data.api.entity.Transaction;
 import se.liu.ida.tdp024.account.data.api.entity.User;
 import se.liu.ida.tdp024.account.data.api.facade.AccountEntityFacade;
 import se.liu.ida.tdp024.account.data.impl.db.entity.AccountDB;
@@ -36,7 +34,6 @@ public class AccountEntityFacadeDB implements AccountEntityFacade {
         Account account = new AccountDB();
         try{
             em.getTransaction().begin();
-
             account.setHoldings(0);
             account.setAccountType(accountType);
             

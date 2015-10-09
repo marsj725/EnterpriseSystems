@@ -22,21 +22,19 @@ import se.liu.ida.tdp024.account.util.json.AccountJsonSerializerImpl;
  */
 public class TransactionEntityFacadeDB implements TransactionEntityFacade {
     private static final HTTPHelper httpHelper = new HTTPHelperImpl();
-    private static final AccountJsonSerializer jsonSerializer = new AccountJsonSerializerImpl();   
-
+    private static final AccountJsonSerializer jsonSerializer = new AccountJsonSerializerImpl();
 
     @Override
     public Transaction create(long accountid, String type, long amount, String status) {
+        
         EntityManager em = EMF.getEntityManager();
-        String personalKey = null;
         Transaction transaction = new TransactionDB();
         int holdings;   
         try{
             em.getTransaction().begin();
-
             transaction.setAccountId(accountid);
             transaction.setAmount(amount);
-            transaction.setDate("");
+            transaction.setDate("2012-15-01");
             transaction.setType(type);
             transaction.setStatus(status);
 
@@ -59,13 +57,14 @@ public class TransactionEntityFacadeDB implements TransactionEntityFacade {
        EntityManager em = EMF.getEntityManager();
        String response = null;
        Transaction temp = new TransactionDB();
+       System.out.println(id);
        try{
 
             
             Query query = em.createQuery("SELECT c FROM TransactionDB c WHERE c.id = :id ");
             query.setParameter("id", id);
 
-           return (Transaction)query;
+           return (Transaction)query.getSingleResult();
         }catch(Exception e){
             
             temp.setId(666);

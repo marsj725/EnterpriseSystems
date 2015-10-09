@@ -18,5 +18,15 @@ public class AccountLogicFacadeImpl implements AccountLogicFacade {
         transactionEntityFacade.create(status, status, status);
         return "";
     }
+
+    @Override
+    public void create() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void find(String name) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

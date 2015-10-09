@@ -12,9 +12,10 @@ public class TransactionDB implements Transaction {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
                  
-    private long accountid,amount;
+    private long accountid;
+    private long amount;
     private String type;
-    private String date;
+    private String dateStamp;
     private String status;
     
     @Override
@@ -49,12 +50,12 @@ public class TransactionDB implements Transaction {
 
     @Override
     public String getDate() {
-        return date;
+        return dateStamp;
     }
 
     @Override
-    public void setDate(String date) {
-        this.date = date;
+    public void setDate(String dateStamp) {
+        this.dateStamp = dateStamp;
     }
 
     @Override

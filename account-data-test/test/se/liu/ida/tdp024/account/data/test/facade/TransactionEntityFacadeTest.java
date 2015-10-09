@@ -42,9 +42,12 @@ public class TransactionEntityFacadeTest {
         String status = "OK";
         String type = "DEBIT";
         
-        Account konto = accountEntityFacade.create(accountType, name, bank);
+        //Account konto = accountEntityFacade.create(accountType, name, bank);
+        //System.out.println("KEY:"+konto.getId());
         
-        Transaction transaction = transactionEntityFacade.create(konto.getId(), type, 10, status);
+        Transaction transaction = transactionEntityFacade.create(1, type, 0, status);
+        
+        System.out.println("TRANSACTION_KEY:"+transaction.getId());
         
         Transaction result = transactionEntityFacade.find(transaction.getId());
         
