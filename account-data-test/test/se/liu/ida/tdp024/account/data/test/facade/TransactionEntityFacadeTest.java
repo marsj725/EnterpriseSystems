@@ -52,6 +52,8 @@ public class TransactionEntityFacadeTest {
         Transaction result = transactionEntityFacade.find(transaction.getId());
         
         Assert.assertEquals(transaction.getId(), result.getId());
+        Assert.assertEquals(0, result.getAmount());
+        Assert.assertEquals(status, result.getStatus());
         System.out.println(transaction.getId() + " : "+result.getId());
         
     }

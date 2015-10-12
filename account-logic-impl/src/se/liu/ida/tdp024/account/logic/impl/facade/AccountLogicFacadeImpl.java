@@ -15,17 +15,28 @@ public class AccountLogicFacadeImpl implements AccountLogicFacade {
     
     public String debit(int id, int amount){
         String status = accountEntityFacade.debit(id, amount);
-        transactionEntityFacade.create(status, status, status);
+        transactionEntityFacade.create(id, amount, "");
         return "";
     }
 
+
     @Override
-    public void create() {
+    public void find(String name) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void find(String name) {
+    public void create(long id, long amount) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String debit(long value) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String kredit(long value) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
