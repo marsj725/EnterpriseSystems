@@ -135,5 +135,4 @@ public class AccountEntityFacadeDB implements AccountEntityFacade {
             em.close();
         }
     }
-    
 }
