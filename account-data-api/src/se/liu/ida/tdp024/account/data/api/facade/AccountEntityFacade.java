@@ -8,7 +8,7 @@ public interface AccountEntityFacade {
     
     public Account find(String name);
     
-    public String debit(long id,long debiteras);
+    public Boolean debit(long id,long debiteras);
     
-    public String kredit(long id,long krediteras);
+    public Boolean kredit(long id,long krediteras);
 }

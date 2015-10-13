@@ -13,6 +13,6 @@ import se.liu.ida.tdp024.account.data.api.entity.Transaction;
  */
 public interface TransactionLogicFacade {
     
-    public Transaction[] find(String name);
+    public Transaction find(String name);
     
 }

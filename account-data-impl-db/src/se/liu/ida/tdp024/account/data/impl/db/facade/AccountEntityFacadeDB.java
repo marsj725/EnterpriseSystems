@@ -22,11 +22,10 @@ import se.liu.ida.tdp024.account.util.json.AccountJsonSerializerImpl;
  * @author marsj725
  */
 public class AccountEntityFacadeDB implements AccountEntityFacade {
-    private static final HTTPHelper httpHelper = new HTTPHelperImpl();
-    private static final AccountJsonSerializer jsonSerializer = new AccountJsonSerializerImpl();   
+ 
 
     @Override
-    public Account create(String accountType, String name, String bank){
+    public Account create(String accountType, String nameKey, String bankKey){
 
         EntityManager em = EMF.getEntityManager();
         String personalKey = null;
@@ -36,14 +35,8 @@ public class AccountEntityFacadeDB implements AccountEntityFacade {
             em.getTransaction().begin();
             account.setHoldings(0);
             account.setAccountType(accountType);
-            
-            String bankResponse = httpHelper.get("http://enterprise-systems.appspot.com/bank" + "/find.name/", "name", bank);
-            String userResponse = httpHelper.get("http://enterprise-systems.appspot.com/person" + "/find.name/", "name", name);     
-            User user = jsonSerializer.fromJson(userResponse, UserType.class);
-            User banks = jsonSerializer.fromJson(bankResponse, UserType.class);
-            account.setPersonalKey(user.getKey());
-            account.setBankKey(banks.getKey());
-            
+            account.setPersonalKey(nameKey);
+            account.setBankKey(bankKey);
             em.persist(account);
             em.getTransaction().commit();
             
@@ -60,17 +53,13 @@ public class AccountEntityFacadeDB implements AccountEntityFacade {
     }
 
     @Override
-    public Account find(String name) {
+    public Account find(String nameKey) {
     EntityManager em = EMF.getEntityManager();
        String response = null;
        Account temp = new AccountDB();
        try{
-            String userResponse = httpHelper.get("http://enterprise-systems.appspot.com/person" + "/find.name/", "name", name);     
-            User user = jsonSerializer.fromJson(userResponse, UserType.class);
-            
-            Query query = em.createQuery("SELECT c FROM AccountDB c WHERE c.personalKey = :personalKey ");
-            query.setParameter("personalKey", user.getKey());
-
+           Query query = em.createQuery("SELECT c FROM AccountDB c WHERE c.personalKey = :personalKey ");
+           query.setParameter("personalKey", nameKey);
            return (Account)query.getSingleResult();
         }catch(Exception e){
             
@@ -80,8 +69,8 @@ public class AccountEntityFacadeDB implements AccountEntityFacade {
             em.close();
         }
     }
-
-    public String debit(long id, long debiteras) {
+    @Override
+    public Boolean debit(long id, long debiteras) {
         EntityManager em = EMF.getEntityManager();
         long tempHoldings = 0;
         try{
@@ -95,12 +84,12 @@ public class AccountEntityFacadeDB implements AccountEntityFacade {
                 konto.setHoldings(tempHoldings);
                 em.merge(konto);
                 em.getTransaction().commit();
-                return "OK";
+                return true;
             }else{
-                return "FAILED";
+                return false;
             }
         }catch(Exception e){
-            return "FAILED";
+            return false;
         }finally{
             if (em.getTransaction().isActive()) {
                 em.getTransaction().rollback();
@@ -110,7 +99,7 @@ public class AccountEntityFacadeDB implements AccountEntityFacade {
     }
 
     @Override
-    public String kredit(long id, long krediteras) {
+    public Boolean kredit(long id, long krediteras) {
         EntityManager em = EMF.getEntityManager();
         String response = null;
         Account temp = null;
@@ -125,9 +114,9 @@ public class AccountEntityFacadeDB implements AccountEntityFacade {
 
             em.merge(konto);
             em.getTransaction().commit();
-            return "OK";
+            return true;
         }catch(Exception e){
-            return "FAILED";
+            return false;
         }finally{
             if (em.getTransaction().isActive()) {
                 em.getTransaction().rollback();

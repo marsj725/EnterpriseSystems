@@ -13,6 +13,7 @@ import se.liu.ida.tdp024.account.data.impl.db.util.StorageFacadeDB;
 public class AccountEntityFacadeTest {
     
     //---- Unit under test ----//
+    
     private StorageFacade storageFacade = new StorageFacadeDB();
     private AccountEntityFacade accountEntityFacade = new AccountEntityFacadeDB();
     
@@ -42,22 +43,21 @@ public class AccountEntityFacadeTest {
         String accountType = "SAVINGS";
         String name = "Marcus Bendtsen";
         String bank = "SWEDBANK";
-        String debit;
-        String kredit;
+        Boolean debit;
+        Boolean kredit;
         
         Account konto = accountEntityFacade.create(accountType, name, bank);
         
         debit = accountEntityFacade.debit(konto.getId(), 10);
-        Assert.assertEquals("FAILED", debit);
+        Assert.assertEquals(false, debit);
         
         kredit = accountEntityFacade.kredit(konto.getId(), 10);
-        Assert.assertEquals("OK", kredit);
+        Assert.assertEquals(true, kredit);
         
         debit = accountEntityFacade.debit(konto.getId(), 10);
-        Assert.assertEquals("OK", debit);
+        Assert.assertEquals(true, debit);
         
         debit = accountEntityFacade.debit(konto.getId(), 10);
-        Assert.assertEquals("FAILED", debit);
-        
+        Assert.assertEquals(false, debit);
     }
 }

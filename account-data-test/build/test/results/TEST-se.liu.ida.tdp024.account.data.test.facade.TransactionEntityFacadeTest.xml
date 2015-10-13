@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="x202e" name="se.liu.ida.tdp024.account.data.test.facade.TransactionEntityFacadeTest" skipped="0" tests="1" time="3.283" timestamp="2015-10-12T09:32:39">
+<testsuite errors="0" failures="0" hostname="x202e" name="se.liu.ida.tdp024.account.data.test.facade.TransactionEntityFacadeTest" skipped="0" tests="1" time="3.052" timestamp="2015-10-13T07:24:48">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="GB" />
@@ -62,7 +62,7 @@
     <property name="libs.j2me_common_ant.maven-pom" value="" />
     <property name="libs.spring-webmvc3.0.maven-pom" value="" />
     <property name="libs.swing-layout.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner se.liu.ida.tdp024.account.data.test.facade.TransactionEntityFacadeTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/masj/NetBeansProjects/account-data-test/build/test/results/TEST-se.liu.ida.tdp024.account.data.test.facade.TransactionEntityFacadeTest.xml crashfile=/home/masj/NetBeansProjects/account-data-test/build/junitvmwatcher1372299144367603719.properties propsfile=/home/masj/NetBeansProjects/account-data-test/build/junit6580917194646358817.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner se.liu.ida.tdp024.account.data.test.facade.TransactionEntityFacadeTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/masj/NetBeansProjects/account-data-test/build/test/results/TEST-se.liu.ida.tdp024.account.data.test.facade.TransactionEntityFacadeTest.xml crashfile=/home/masj/NetBeansProjects/account-data-test/build/junitvmwatcher1899424848984773340.properties propsfile=/home/masj/NetBeansProjects/account-data-test/build/junit7999297324190804348.properties" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="netbeans.accept_license_class" value="org.netbeans.license.AcceptLicense" />
     <property name="build.sysclasspath" value="ignore" />
@@ -106,7 +106,7 @@
     <property name="javadoc.splitindex" value="true" />
     <property name="file.separator" value="/" />
     <property name="libs.Java-EE-GlassFish-v3-Prelude.maven-pom" value="" />
-    <property name="javac.includesfile.binary" value="/home/masj/NetBeansProjects/account-data-test/null587417223" />
+    <property name="javac.includesfile.binary" value="/home/masj/NetBeansProjects/account-data-test/null1589322217" />
     <property name="libs.junit_4.maven-pom" value="" />
     <property name="mkdist.disabled" value="true" />
     <property name="javac.test.processorpath" value="../account-data-api/dist/account-data-api.jar:../account-data-impl-db/dist/account-data-impl-db.jar:../lib/junit-4.10.jar:../lib/derby.jar:../lib/eclipselink-2.3.0.jar:../lib/javax.persistence-2.0.jar:../lib/org.eclipse.persistence.jpa.jpql_1.0.0.jar:../account-util/dist/account-util.jar:../lib/jackson-databind-2.2.1.jar:../lib/jackson-annotations-2.2.2.jar:../lib/jackson-core-2.2.2.jar:build/classes:/home/masj/.netbeans/8.0.2/modules/ext/junit-4.10.jar:../account-util/dist/account-util.jar" />
@@ -302,14 +302,14 @@
     <property name="work.dir" value="/home/masj/NetBeansProjects/account-data-test" />
     <property name="libs.jaxb.classpath" value="/usr/share/netbeans/ide/modules/ext/jaxb/jaxb-impl.jar:/usr/share/netbeans/ide/modules/ext/jaxb/jaxb-xjc.jar:/usr/share/netbeans/ide/modules/ext/jaxb/jaxb1-impl.jar:/usr/share/netbeans/ide/modules/ext/jaxb/activation.jar:/usr/share/netbeans/ide/modules/ext/jaxb/api/jaxb-api.jar:/usr/share/netbeans/ide/modules/ext/jaxb/api/jsr173_1.0_api.jar" />
     <property name="do.depend" value="false" />
-    <property name="libs.j2me_common_ant.classpath" value="/usr/share/netbeans/mobility/modules/org-netbeans-modules-j2me-common-ant.jar:/usr/share/netbeans/java/modules/org-netbeans-modules-classfile.jar" />
     <property name="dist.javadoc.dir" value="dist/javadoc" />
-    <property name="libs.spring-webmvc3.0.classpath" value="/usr/share/netbeans/java/modules/ext/spring-3.0/spring-webmvc-3.2.7.RELEASE.jar" />
+    <property name="libs.j2me_common_ant.classpath" value="/usr/share/netbeans/mobility/modules/org-netbeans-modules-j2me-common-ant.jar:/usr/share/netbeans/java/modules/org-netbeans-modules-classfile.jar" />
     <property name="libs.swing-layout.classpath" value="/usr/share/netbeans/platform/modules/ext/swing-layout-1.0.4.jar" />
+    <property name="libs.spring-webmvc3.0.classpath" value="/usr/share/netbeans/java/modules/ext/spring-3.0/spring-webmvc-3.2.7.RELEASE.jar" />
     <property name="libs.javaee-web-api-7.0.maven-pom" value="" />
     <property name="libs.restlib.src" value="" />
-    <property name="javac.source" value="1.6" />
     <property name="build.generated.dir" value="build/generated" />
+    <property name="javac.source" value="1.6" />
     <property name="line.separator" value="&#xa;" />
     <property name="java.specification.version" value="1.7" />
     <property name="java.vm.info" value="mixed mode" />
@@ -321,8 +321,8 @@
     <property name="javac.target" value="1.6" />
     <property name="built-jar.properties" value="/home/masj/NetBeansProjects/account-data-test/build/built-jar.properties" />
     <property name="build.test.classes.dir" value="build/test/classes" />
-    <property name="annotation.processing.enabled" value="true" />
     <property name="libs.jpa2-persistence.src" value="" />
+    <property name="annotation.processing.enabled" value="true" />
     <property name="libs.jsf20.src" value="" />
     <property name="libs.jpa20-persistence.src" value="" />
     <property name="libs.DataBindingME-SVG.maven-pom" value="" />
@@ -330,6 +330,7 @@
     <property name="project.account-data-impl-db" value="../account-data-impl-db" />
     <property name="libs.JAVADB_DRIVER_LABEL.maven-pom" value="" />
     <property name="libs.struts.javadoc" value="/usr/share/netbeans/enterprise/docs/struts-1.3.10-javadoc.zip" />
+    <property name="ignore.failing.tests" value="true" />
     <property name="libs.Comet-GlassFish-v3.classpath" value="" />
     <property name="libs.javaee-web-api-7.0.src" value="" />
     <property name="libs.primefaces.src" value="" />
@@ -341,14 +342,14 @@
     <property name="java.awt.printerjob" value="sun.print.PSPrinterJob" />
     <property name="default.javac.source" value="1.7" />
     <property name="debug-transport-by-os" value="dt_socket" />
-    <property name="libs.MySQLDriver.src" value="" />
     <property name="sun.jnu.encoding" value="UTF-8" />
-    <property name="java.runtime.version" value="1.7.0_85-b01" />
+    <property name="libs.MySQLDriver.src" value="" />
     <property name="build.test.results.dir" value="build/test/results" />
+    <property name="java.runtime.version" value="1.7.0_85-b01" />
     <property name="file.reference.jackson-annotations-2.2.2.jar" value="../lib/jackson-annotations-2.2.2.jar" />
     <property name="jna.platform.library.path" value="/usr/lib64:/lib64:/usr/lib:/lib" />
-    <property name="default.javac.target" value="1.7" />
     <property name="project.account-util" value="../account-util" />
+    <property name="default.javac.target" value="1.7" />
     <property name="libs.junit_4.classpath" value="/home/masj/.netbeans/8.0.2/modules/ext/junit-4.10.jar" />
     <property name="user.timezone" value="" />
     <property name="nb.junit.single" value="false" />
@@ -365,8 +366,8 @@
     <property name="endorsed.classpath" value="" />
     <property name="libs.absolutelayout.classpath" value="/usr/share/netbeans/java/modules/ext/AbsoluteLayout.jar" />
     <property name="excludes" value="" />
-    <property name="libs.metro.classpath" value="/usr/share/netbeans/ide/modules/ext/jaxb/activation.jar:/usr/share/netbeans/enterprise/modules/ext/metro/webservices-api.jar:/usr/share/netbeans/enterprise/modules/ext/metro/webservices-extra-api.jar:/usr/share/netbeans/enterprise/modules/ext/metro/webservices-extra.jar:/usr/share/netbeans/enterprise/modules/ext/metro/webservices-rt.jar:/usr/share/netbeans/enterprise/modules/ext/metro/webservices-tools.jar" />
     <property name="libs.restlib.maven-pom" value="" />
+    <property name="libs.metro.classpath" value="/usr/share/netbeans/ide/modules/ext/jaxb/activation.jar:/usr/share/netbeans/enterprise/modules/ext/metro/webservices-api.jar:/usr/share/netbeans/enterprise/modules/ext/metro/webservices-extra-api.jar:/usr/share/netbeans/enterprise/modules/ext/metro/webservices-extra.jar:/usr/share/netbeans/enterprise/modules/ext/metro/webservices-rt.jar:/usr/share/netbeans/enterprise/modules/ext/metro/webservices-tools.jar" />
     <property name="libs.jpa2-persistence.javadoc" value="/usr/share/netbeans/java/modules/ext/docs/javax.persistence-2.1.0-doc.zip" />
     <property name="libs.DataBindingME.javadoc" value="/usr/share/netbeans/mobility/modules/docs/netbeans_databindingme-api.zip" />
     <property name="java.class.path" value="/home/masj/NetBeansProjects/account-data-api/dist/account-data-api.jar:/home/masj/NetBeansProjects/account-data-impl-db/dist/account-data-impl-db.jar:/home/masj/NetBeansProjects/lib/junit-4.10.jar:/home/masj/NetBeansProjects/lib/derby.jar:/home/masj/NetBeansProjects/lib/eclipselink-2.3.0.jar:/home/masj/NetBeansProjects/lib/javax.persistence-2.0.jar:/home/masj/NetBeansProjects/lib/org.eclipse.persistence.jpa.jpql_1.0.0.jar:/home/masj/NetBeansProjects/account-util/dist/account-util.jar:/home/masj/NetBeansProjects/lib/jackson-databind-2.2.1.jar:/home/masj/NetBeansProjects/lib/jackson-annotations-2.2.2.jar:/home/masj/NetBeansProjects/lib/jackson-core-2.2.2.jar:/home/masj/NetBeansProjects/account-data-test/build/classes:/home/masj/.netbeans/8.0.2/modules/ext/junit-4.10.jar:/home/masj/NetBeansProjects/account-data-test/build/test/classes:/home/masj/.netbeans/8.0.2/ant/lib/ant-launcher.jar:/home/masj/.netbeans/8.0.2/ant/lib/ant.jar:/home/masj/.netbeans/8.0.2/ant/lib/ant-junit.jar:/home/masj/.netbeans/8.0.2/ant/lib/ant-junit4.jar" />
@@ -385,9 +386,9 @@
     <property name="libs.Comet-GlassFish-v3.src" value="" />
     <property name="libs.restlib.javadoc" value="" />
     <property name="libs.JAXB-ENDORSED.classpath" value="/usr/share/netbeans/ide/modules/ext/jaxb/api/jaxb-api.jar" />
-    <property name="nb.internal.action.name" value="run.single" />
-    <property name="libs.javaee-api-7.0.javadoc" value="/usr/share/netbeans/enterprise/docs/javaee-doc-api.jar" />
+    <property name="nb.internal.action.name" value="test.single" />
     <property name="libs.eclipselink.classpath" value="/usr/share/netbeans/java/modules/ext/eclipselink/eclipselink.jar:/usr/share/netbeans/java/modules/ext/eclipselink/javax.persistence_2.1.0.v201304241213.jar:/usr/share/netbeans/java/modules/ext/eclipselink/org.eclipse.persistence.jpa.jpql_2.5.2.v20140319-9ad6abd.jar" />
+    <property name="libs.javaee-api-7.0.javadoc" value="/usr/share/netbeans/enterprise/docs/javaee-doc-api.jar" />
     <property name="libs.beans-binding.javadoc" value="/usr/share/netbeans/java/docs/beansbinding-1.2.1-doc.zip" />
     <property name="ant.file.account-data-test" value="/home/masj/NetBeansProjects/account-data-test/build.xml" />
     <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment" />
@@ -399,16 +400,16 @@
     <property name="run.jvmargs" value="" />
     <property name="libs.hibernate4-persistence.classpath" value="/usr/share/netbeans/java/modules/ext/hibernate4/antlr-2.7.7.jar:/usr/share/netbeans/java/modules/ext/hibernate4/c3p0-0.9.2.1.jar:/usr/share/netbeans/java/modules/ext/hibernate4/hibernate-c3p0-4.3.1.Final.jar:/usr/share/netbeans/java/modules/ext/hibernate4/mchange-commons-java-0.2.3.4.jar:/usr/share/netbeans/java/modules/ext/hibernate4/dom4j-1.6.1.jar:/usr/share/netbeans/java/modules/ext/hibernate4/ehcache-core-2.4.3.jar:/usr/share/netbeans/java/modules/ext/hibernate4/hibernate-ehcache-4.3.1.Final.jar:/usr/share/netbeans/java/modules/ext/hibernate4/hibernate-core-4.3.1.Final.jar:/usr/share/netbeans/java/modules/ext/hibernate4/jboss-logging-3.1.3.GA.jar:/usr/share/netbeans/java/modules/ext/hibernate4/hibernate-commons-annotations-4.0.4.Final.jar:/usr/share/netbeans/java/modules/ext/hibernate4/hibernate-entitymanager-4.3.1.Final.jar:/usr/share/netbeans/java/modules/ext/hibernate4/javassist-3.18.1-GA.jar:/usr/share/netbeans/java/modules/ext/hibernate4/jboss-transaction-api_1.2_spec-1.0.0.Final.jar:/usr/share/netbeans/java/modules/ext/hibernate4/slf4j-api-1.6.1.jar:/usr/share/netbeans/java/modules/ext/hibernate4/slf4j-simple-1.6.1.jar:/usr/share/netbeans/java/modules/ext/hibernate4/hibernate-jpa-2.1-api-1.0.0.Final.jar" />
     <property name="libs.JAXB-ENDORSED.src" value="" />
-    <property name="libs.testng.javadoc" value="/usr/share/netbeans/platform/docs/testng-6.8.1-javadoc.zip" />
     <property name="libs.DataBindingME-PIM.src" value="/usr/share/netbeans/mobility/sources/netbeans_databindingme_pim-src.zip" />
+    <property name="libs.testng.javadoc" value="/usr/share/netbeans/platform/docs/testng-6.8.1-javadoc.zip" />
     <property name="libs.PostgreSQLDriver.classpath" value="/usr/share/netbeans/ide/modules/ext/postgresql-9.2-1002.jdbc4.jar" />
     <property name="libs.jsf12.maven-pom" value="" />
     <property name="file.reference.jackson-databind-2.2.1.jar" value="../lib/jackson-databind-2.2.1.jar" />
     <property name="libs.hibernate4-persistencemodelgen.classpath" value="/usr/share/netbeans/java/modules/ext/hibernate4/hibernate-jpamodelgen-4.3.1.Final.jar" />
     <property name="libs.junit.src" value="" />
     <property name="annotation.processing.source.output" value="build/generated-sources/ap-source-output" />
-    <property name="build.dir" value="build" />
     <property name="libs.CopyLibs.src" value="" />
+    <property name="build.dir" value="build" />
     <property name="libs.jsp-compilation.classpath" value="/home/masj/.netbeans/8.0.2/ant/lib/ant.jar:/usr/share/netbeans/enterprise/modules/ext/servlet3.1-jsp2.3-api.jar:/usr/share/netbeans/enterprise/modules/ext/glassfish-jspparser-4.0.jar:/usr/share/netbeans/enterprise/modules/ext/jsf-2_2/javax.faces.jar:/usr/share/netbeans/enterprise/modules/ext/jstl-api.jar:/home/masj/.netbeans/8.0.2/ant/lib/ant-launcher.jar" />
     <property name="ant.version" value="Apache Ant(TM) version 1.9.4 compiled on April 29 2014" />
     <property name="file.reference.derby.jar" value="../lib/derby.jar" />
@@ -421,23 +422,22 @@
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit" />
     <property name="libs.javaee-web-api-7.0.javadoc" value="/usr/share/netbeans/enterprise/docs/javaee-doc-api.jar" />
   </properties>
-  <testcase classname="se.liu.ida.tdp024.account.data.test.facade.TransactionEntityFacadeTest" name="testCreate" time="2.973" />
-  <system-out><![CDATA[[EL Info]: 2015-10-12 11:32:40.784--ServerSession(145504020)--EclipseLink, version: Eclipse Persistence Services - 2.3.0.v20110604-r9504
-[EL Info]: 2015-10-12 11:32:42.218--ServerSession(145504020)--file:/home/masj/NetBeansProjects/account-data-impl-db/dist/account-data-impl-db.jar_account-dataPU login successful
-[EL Warning]: 2015-10-12 11:32:42.457--ServerSession(145504020)--Exception [EclipseLink-4002] (Eclipse Persistence Services - 2.3.0.v20110604-r9504): org.eclipse.persistence.exceptions.DatabaseException
+  <testcase classname="se.liu.ida.tdp024.account.data.test.facade.TransactionEntityFacadeTest" name="testCreate" time="2.922" />
+  <system-out><![CDATA[[EL Info]: 2015-10-13 09:24:49.008--ServerSession(808517448)--EclipseLink, version: Eclipse Persistence Services - 2.3.0.v20110604-r9504
+[EL Info]: 2015-10-13 09:24:50.423--ServerSession(808517448)--file:/home/masj/NetBeansProjects/account-data-impl-db/dist/account-data-impl-db.jar_account-dataPU login successful
+[EL Warning]: 2015-10-13 09:24:50.683--ServerSession(808517448)--Exception [EclipseLink-4002] (Eclipse Persistence Services - 2.3.0.v20110604-r9504): org.eclipse.persistence.exceptions.DatabaseException
 Internal Exception: java.sql.SQLSyntaxErrorException: 'DROP TABLE' cannot be performed on 'ACCOUNTDB' because it does not exist.
 Error Code: 30000
 Call: DROP TABLE ACCOUNTDB
 Query: DataModifyQuery(sql="DROP TABLE ACCOUNTDB")
-[EL Warning]: 2015-10-12 11:32:42.532--ServerSession(145504020)--Exception [EclipseLink-4002] (Eclipse Persistence Services - 2.3.0.v20110604-r9504): org.eclipse.persistence.exceptions.DatabaseException
+[EL Warning]: 2015-10-13 09:24:50.768--ServerSession(808517448)--Exception [EclipseLink-4002] (Eclipse Persistence Services - 2.3.0.v20110604-r9504): org.eclipse.persistence.exceptions.DatabaseException
 Internal Exception: java.sql.SQLSyntaxErrorException: 'DROP TABLE' cannot be performed on 'TRANSACTIONDB' because it does not exist.
 Error Code: 30000
 Call: DROP TABLE TRANSACTIONDB
 Query: DataModifyQuery(sql="DROP TABLE TRANSACTIONDB")
 TRANSACTION_KEY:1
-1
 1 : 1
-[EL Info]: 2015-10-12 11:32:43.115--ServerSession(145504020)--file:/home/masj/NetBeansProjects/account-data-impl-db/dist/account-data-impl-db.jar_account-dataPU logout successful
+[EL Info]: 2015-10-13 09:24:51.337--ServerSession(808517448)--file:/home/masj/NetBeansProjects/account-data-impl-db/dist/account-data-impl-db.jar_account-dataPU logout successful
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

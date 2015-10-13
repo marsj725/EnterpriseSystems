@@ -21,8 +21,6 @@ import se.liu.ida.tdp024.account.util.json.AccountJsonSerializerImpl;
  * @author masj
  */
 public class TransactionEntityFacadeDB implements TransactionEntityFacade {
-    private static final HTTPHelper httpHelper = new HTTPHelperImpl();
-    private static final AccountJsonSerializer jsonSerializer = new AccountJsonSerializerImpl();
 
     @Override
     public Transaction create(long accountid, String type, long amount, String status) {
@@ -57,7 +55,6 @@ public class TransactionEntityFacadeDB implements TransactionEntityFacade {
        EntityManager em = EMF.getEntityManager();
        String response = null;
        Transaction temp = new TransactionDB();
-       System.out.println(id);
        try{
 
             
