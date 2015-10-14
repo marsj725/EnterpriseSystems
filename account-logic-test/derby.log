@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Wed Oct 14 12:01:20 CEST 2015:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.1.2 - (1095077): instance a816c00e-0150-65cc-02c3-00000c2bb618 
+Wed Oct 14 20:19:28 CEST 2015:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.1.2 - (1095077): instance a816c00e-0150-6794-0f4b-00000c2b4d10 
 on database directory memory:/home/marsj725/TDP024/EnterpriseSystems/account-logic-test/dataPU_embedded  with class loader sun.misc.Launcher$AppClassLoader@234f79cb 
 Loaded from file:/home/marsj725/TDP024/EnterpriseSystems/lib/derby.jar
 java.vendor=Oracle Corporation

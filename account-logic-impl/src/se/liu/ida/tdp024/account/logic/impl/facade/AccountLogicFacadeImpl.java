@@ -38,14 +38,30 @@ public class AccountLogicFacadeImpl implements AccountLogicFacade {
 
     @Override
     public String create(String accountType, String name, String bank) {
-        String bankResponse = httpHelper.get("http://enterprise-systems.appspot.com/bank" + "/find.name/", "name", bank);
-        String userResponse = httpHelper.get("http://enterprise-systems.appspot.com/person" + "/find.name/", "name", name); 
-        User user = jsonSerializer.fromJson(userResponse, UserType.class);
-        User banks = jsonSerializer.fromJson(bankResponse, UserType.class);
-        Account konto = accountEntityFacade.create(accountType, user.getKey(), banks.getKey());
-        if(konto != null){
-            return "OK";
-        }else{
+        try{
+            String bankResponse = httpHelper.get("http://enterprise-systems.appspot.com/bank" + "/find.name/", "name", bank);
+            String userResponse = httpHelper.get("http://enterprise-systems.appspot.com/person" + "/find.name/", "name", name); 
+            User user = jsonSerializer.fromJson(userResponse, UserType.class);
+            User banks = jsonSerializer.fromJson(bankResponse, UserType.class);
+            System.out.println("BXK:" + bankResponse + " UXR: "+userResponse);
+
+            if(bankResponse == null || userResponse == null){return "FAILED";}
+            if(accountType == "SAVINGS" || accountType == "CREDIT"){
+                
+                System.out.println("they are not empty! BNK: "+ bankResponse + " USR: "+ userResponse +" AccountT: "+accountType);
+                Account konto = accountEntityFacade.create(accountType, user.getKey(), banks.getKey());
+                if(!konto.getPersonalKey().isEmpty()){
+                    return "OK";
+                }else{
+                    System.out.println("FAIL @ 1");
+                    return "FAILED";
+                }
+            }else{
+                System.out.println("FAIL @ 2");
+                return "FAILED";
+            }
+        }catch(Exception e){
+            System.out.println("FAIL @ E");
             return "FAILED";
         }
     }

@@ -39,7 +39,7 @@ public class AccountLogicFacadeTest {
     @Test
     public void testCreateFind() {
         
-        String accountType = "SAVINGS";
+        String accountType = "CREDITCARD";
         String name = "Marcus Bendtsen";
         String bank = "SWEDBANK";
         String konto = accountLogicFacade.create(accountType, name, bank);

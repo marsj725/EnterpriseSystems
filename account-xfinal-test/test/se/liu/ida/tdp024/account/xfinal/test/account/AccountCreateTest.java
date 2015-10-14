@@ -120,7 +120,6 @@ public class AccountCreateTest {
 
     @Test
     public void createFailure() {
-
         {
             String name = "Marcus Bendtsen";
             String bank = "SWEDBANK";

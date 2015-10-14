@@ -21,11 +21,11 @@ public class AccountService {
     @GET
     @Path("create")
     public Response create(
-            @QueryParam("accounttype") String accounttype,
-            @QueryParam("name") String name,
-            @QueryParam("bank") String bank){
-            this.accountLogicFacade.create(accounttype, name, bank);
-        return Response.ok().status(Response.Status.OK).entity("hello").build();
+        @QueryParam("accounttype") String accounttype,
+        @QueryParam("name") String name,
+        @QueryParam("bank") String bank){
+        return Response.ok().entity(this.accountLogicFacade.create(accounttype, name, bank)).build();
+        
     }
     @GET
     @Path("debit")

@@ -57,18 +57,16 @@ public class AccountEntityFacadeDB implements AccountEntityFacade {
     @Override
     public List<Account> find(String nameKey) {
        EntityManager em = EMF.getEntityManager();
-       List ofAccount = new ArrayList();
+       List accountList = new ArrayList();
        String response = null;
        Account temp = new AccountDB();
        try{
            Query query = em.createQuery("SELECT c FROM AccountDB c WHERE c.personalKey = :personalKey ");
            query.setParameter("personalKey", nameKey);
-           ofAccount = query.getResultList();
-           return ofAccount;
+           accountList = query.getResultList();
+           return accountList;
         }catch(Exception e){
-            
-            temp.setId(999);
-            return null;
+            return accountList;
         }finally{
             em.close();
         }
