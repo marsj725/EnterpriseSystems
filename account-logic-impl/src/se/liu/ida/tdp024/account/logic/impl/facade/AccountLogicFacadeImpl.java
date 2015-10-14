@@ -1,5 +1,6 @@
 package se.liu.ida.tdp024.account.logic.impl.facade;
 
+import java.util.List;
 import se.liu.ida.tdp024.account.data.api.entity.Account;
 import se.liu.ida.tdp024.account.data.api.entity.User;
 import se.liu.ida.tdp024.account.data.api.facade.AccountEntityFacade;
@@ -25,7 +26,7 @@ public class AccountLogicFacadeImpl implements AccountLogicFacade {
     }
        
     @Override
-    public Account find(String name) {
+    public List<Account> find(String name) {
         try{
             String userResponse = httpHelper.get("http://enterprise-systems.appspot.com/person" + "/find.name/", "name", name);     
             User user = jsonSerializer.fromJson(userResponse, UserType.class);
@@ -50,25 +51,24 @@ public class AccountLogicFacadeImpl implements AccountLogicFacade {
     }
 
     @Override
-    public Boolean kredit(long id,long value) {
-        String userResponse = httpHelper.get("http://enterprise-systems.appspot.com/person" + "/find.name/", "name", name); 
-        User user = jsonSerializer.fromJson(userResponse, UserType.class);
-        Account account = accountEntityFacade.find(user.getKey());
-        Boolean accountStatus = accountEntityFacade.kredit(account.getId(), value);
-        transactionEntityFacade.create(account.getId(), "kredit", value, account.getAccountType());
+    public Boolean credit(long id,long credit) {
+        String status = null;
+        Boolean accountStatus = accountEntityFacade.kredit(id, credit);
+        if(accountStatus){status = "OK";}
+        else{status = "FAILED";}
+        transactionEntityFacade.create(id, "credit", credit, status);
         return accountStatus;
     }
     
     @Override
-    public Boolean debit(String name, long debit) {
+    public Boolean debit(long id, long debit) {
         try{
-            String userResponse = httpHelper.get("http://enterprise-systems.appspot.com/person" + "/find.name/", "name", name); 
-            User user = jsonSerializer.fromJson(userResponse, UserType.class);
-            Account account = accountEntityFacade.find(user.getKey());
-            Boolean status = accountEntityFacade.debit(account.getId(), debit);
-            System.out.println("Status: "+status);
-            transactionEntityFacade.create(account.getId(), "debit", debit, account.getAccountType());
-            return status;
+            String status = null;
+            Boolean accountStatus = accountEntityFacade.debit(id, debit);
+            if(accountStatus){status = "OK";}
+            else{status = "FAILED";}
+            transactionEntityFacade.create(id, "debit", debit, status);
+            return accountStatus;
         }catch(Exception e){
             return null;
         }

@@ -31,8 +31,8 @@ public class TransactionLogicFacadeImpl implements TransactionLogicFacade {
     public Transaction find(String name) {
         String userResponse = httpHelper.get("http://enterprise-systems.appspot.com/person" + "/find.name/", "name", name); 
         User user = jsonSerializer.fromJson(userResponse, UserType.class);
-        Account account = accountEntityFacade.find(user.getKey());
-        return transactionEntityFacade.find(account.getId());
+        //Account account = accountEntityFacade.find(user.getKey());
+        return transactionEntityFacade.find(1);
     }
     
 }

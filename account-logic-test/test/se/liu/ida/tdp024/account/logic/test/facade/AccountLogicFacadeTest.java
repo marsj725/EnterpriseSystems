@@ -1,5 +1,6 @@
 package se.liu.ida.tdp024.account.logic.test.facade;
 
+import java.util.List;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
@@ -42,15 +43,15 @@ public class AccountLogicFacadeTest {
         String name = "Marcus Bendtsen";
         String bank = "SWEDBANK";
         String konto = accountLogicFacade.create(accountType, name, bank);
-        Account account = accountLogicFacade.find(name);
+        List<Account> account = accountLogicFacade.find(name);
         
         String nameBankKey = httpHelper.get("http://enterprise-systems.appspot.com/bank" + "/find.name/", "name", bank);
-        String userBankKey = httpHelper.get("http://enterprise-systems.appspot.com/bank" + "/find.key/", "key", account.getBankKey());
+        String userBankKey = httpHelper.get("http://enterprise-systems.appspot.com/bank" + "/find.key/", "key", account.get(0).getBankKey());
         User bankUser = jsonSerializer.fromJson(nameBankKey, UserType.class);
         User bankKey = jsonSerializer.fromJson(userBankKey, UserType.class);    
 
         Assert.assertEquals("OK", konto);
-        Assert.assertEquals(accountType, account.getAccountType());
+        Assert.assertEquals(accountType, account.get(0).getAccountType());
         Assert.assertEquals(bankUser.getName(), bankKey.getName());
     }
     
@@ -63,20 +64,21 @@ public class AccountLogicFacadeTest {
         Boolean kredit;
         
         String konto = accountLogicFacade.create(accountType, name, bank);
+        List<Account> account = accountLogicFacade.find(name);
         //System.out.println("Konto: "+konto.getId())
         
         
-        debit = accountLogicFacade.debit(name, 10);
+        debit = accountLogicFacade.debit(account.get(0).getId(), 10);
         Assert.assertEquals(false, debit);
         
-        kredit = accountLogicFacade.kredit(name, 10);
+        kredit = accountLogicFacade.credit(account.get(0).getId(), 10);
         Assert.assertEquals(true, kredit);
         
-        debit = accountLogicFacade.debit(name, 10);
+        debit = accountLogicFacade.debit(account.get(0).getId(), 10);
         Assert.assertEquals(true, debit);
         System.out.println("Kredit: " + kredit);
         
-        debit = accountLogicFacade.debit(name, 10);
+        debit = accountLogicFacade.debit(account.get(0).getId(), 10);
         Assert.assertEquals(false, debit);
     }
 }

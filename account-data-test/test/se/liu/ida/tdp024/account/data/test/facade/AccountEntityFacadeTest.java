@@ -1,5 +1,6 @@
 package se.liu.ida.tdp024.account.data.test.facade;
 
+import java.util.List;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
@@ -30,11 +31,11 @@ public class AccountEntityFacadeTest {
         String bank = "SWEDBANK";
         Account konto = accountEntityFacade.create(accountType, name, bank);
         
-        Account account = accountEntityFacade.find(name);
-        System.out.println(konto.getId()+" :: "+account.getId());
-        Assert.assertEquals(konto.getId(), account.getId());
-        Assert.assertEquals(accountType, account.getAccountType());
-        Assert.assertEquals(konto.getBankKey(), account.getBankKey());
+        List<Account> account = accountEntityFacade.find(name);
+        System.out.println(konto.getId()+" :: "+account.get(0).getId());
+        Assert.assertEquals(konto.getId(), account.get(0).getId());
+        Assert.assertEquals(accountType, account.get(0).getAccountType());
+        Assert.assertEquals(konto.getBankKey(), account.get(0).getBankKey());
     }
     
     @Test

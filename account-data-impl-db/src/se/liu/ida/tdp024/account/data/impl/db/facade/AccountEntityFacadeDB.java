@@ -5,6 +5,8 @@
  */
 package se.liu.ida.tdp024.account.data.impl.db.facade;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import se.liu.ida.tdp024.account.data.api.entity.Account;
@@ -53,18 +55,20 @@ public class AccountEntityFacadeDB implements AccountEntityFacade {
     }
 
     @Override
-    public Account find(String nameKey) {
-    EntityManager em = EMF.getEntityManager();
+    public List<Account> find(String nameKey) {
+       EntityManager em = EMF.getEntityManager();
+       List ofAccount = new ArrayList();
        String response = null;
        Account temp = new AccountDB();
        try{
            Query query = em.createQuery("SELECT c FROM AccountDB c WHERE c.personalKey = :personalKey ");
            query.setParameter("personalKey", nameKey);
-           return (Account)query.getSingleResult();
+           ofAccount = query.getResultList();
+           return ofAccount;
         }catch(Exception e){
             
             temp.setId(999);
-            return temp;
+            return null;
         }finally{
             em.close();
         }

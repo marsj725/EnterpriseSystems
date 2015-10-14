@@ -1,9 +1,12 @@
 package se.liu.ida.tdp024.account.rest.service;
 
+import com.owlike.genson.Genson;
+import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
+import se.liu.ida.tdp024.account.data.api.entity.Account;
 import se.liu.ida.tdp024.account.data.impl.db.facade.AccountEntityFacadeDB;
 import se.liu.ida.tdp024.account.logic.api.facade.AccountLogicFacade;
 import se.liu.ida.tdp024.account.logic.impl.facade.AccountLogicFacadeImpl;
@@ -27,8 +30,9 @@ public class AccountService {
     @GET
     @Path("debit")
     public Response debit(
-            @QueryParam("debit") long id, long debit){
-            //accountLogicFacade.debit(id, debit);
+            @QueryParam("id") long id, 
+            @QueryParam("amount") long debit){
+            accountLogicFacade.debit(id, debit);
         return Response.ok().build();
     }
     @GET
@@ -36,12 +40,15 @@ public class AccountService {
     public Response credit(
             @QueryParam("id") long id,
             @QueryParam("amount") long amount){
+            accountLogicFacade.credit(id, amount);
         return Response.ok().build();
     }
     @GET
     @Path("find/name")
     public Response findName(
             @QueryParam("name") String name){
+            List<Account> account = accountLogicFacade.find(name);
+            Genson sa = new Genson();
         return Response.ok().build();
     }
     @GET
