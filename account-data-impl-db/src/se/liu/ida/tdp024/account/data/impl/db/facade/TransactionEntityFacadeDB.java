@@ -5,6 +5,9 @@
  */
 package se.liu.ida.tdp024.account.data.impl.db.facade;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import se.liu.ida.tdp024.account.data.api.entity.Transaction;
@@ -29,10 +32,11 @@ public class TransactionEntityFacadeDB implements TransactionEntityFacade {
         Transaction transaction = new TransactionDB();
         int holdings;   
         try{
+            String datum = new Date().toString();
             em.getTransaction().begin();
             transaction.setAccountId(accountid);
             transaction.setAmount(amount);
-            transaction.setDate("2012-15-01");
+            transaction.setDate(datum);
             transaction.setType(type);
             transaction.setStatus(status);
 
@@ -51,21 +55,17 @@ public class TransactionEntityFacadeDB implements TransactionEntityFacade {
     }
 
     @Override
-    public Transaction find(long id) {
+    public List<Transaction> find(long id) {
        EntityManager em = EMF.getEntityManager();
        String response = null;
-       Transaction temp = new TransactionDB();
+       List<Transaction> returnList = new ArrayList();
        try{
-
-            
             Query query = em.createQuery("SELECT c FROM TransactionDB c WHERE c.id = :id ");
             query.setParameter("id", id);
-
-           return (Transaction)query.getSingleResult();
+            returnList = query.getResultList();
+           return returnList;
         }catch(Exception e){
-            
-            temp.setId(666);
-            return temp;
+            return returnList;
         }finally{
             em.close();
         }

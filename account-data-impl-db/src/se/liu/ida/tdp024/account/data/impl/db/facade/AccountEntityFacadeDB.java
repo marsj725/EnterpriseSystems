@@ -10,14 +10,9 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import se.liu.ida.tdp024.account.data.api.entity.Account;
-import se.liu.ida.tdp024.account.data.api.entity.User;
 import se.liu.ida.tdp024.account.data.api.facade.AccountEntityFacade;
 import se.liu.ida.tdp024.account.data.impl.db.entity.AccountDB;
 import se.liu.ida.tdp024.account.data.impl.db.util.EMF;
-import se.liu.ida.tdp024.account.util.http.HTTPHelper;
-import se.liu.ida.tdp024.account.util.http.HTTPHelperImpl;
-import se.liu.ida.tdp024.account.util.json.AccountJsonSerializer;
-import se.liu.ida.tdp024.account.util.json.AccountJsonSerializerImpl;
 
 /**
  *

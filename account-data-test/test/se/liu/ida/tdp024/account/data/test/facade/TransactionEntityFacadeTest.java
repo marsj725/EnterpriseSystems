@@ -5,6 +5,7 @@
  */
 package se.liu.ida.tdp024.account.data.test.facade;
 
+import java.util.List;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
@@ -49,12 +50,12 @@ public class TransactionEntityFacadeTest {
         
         System.out.println("TRANSACTION_KEY:"+transaction.getId());
         
-        Transaction result = transactionEntityFacade.find(transaction.getId());
+        List<Transaction> result = transactionEntityFacade.find(transaction.getId());
         
-        Assert.assertEquals(transaction.getId(), result.getId());
-        Assert.assertEquals(0, result.getAmount());
-        Assert.assertEquals(status, result.getStatus());
-        System.out.println(transaction.getId() + " : "+result.getId());
+        Assert.assertEquals(transaction.getId(), result.get(0).getId());
+        Assert.assertEquals(0, result.get(0).getAmount());
+        Assert.assertEquals(status, result.get(0).getStatus());
+        System.out.println(transaction.getId() + " : "+result.get(0).getId());
         
     }
 }

@@ -5,6 +5,7 @@
  */
 package se.liu.ida.tdp024.account.logic.api.facade;
 
+import java.util.List;
 import se.liu.ida.tdp024.account.data.api.entity.Transaction;
 
 /**
@@ -13,6 +14,6 @@ import se.liu.ida.tdp024.account.data.api.entity.Transaction;
  */
 public interface TransactionLogicFacade {
     
-    public Transaction find(String name);
+    public List<Transaction> find(long id);
     
 }

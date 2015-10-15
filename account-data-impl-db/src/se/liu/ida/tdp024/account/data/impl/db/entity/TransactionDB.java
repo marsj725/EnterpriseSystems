@@ -1,5 +1,6 @@
 package se.liu.ida.tdp024.account.data.impl.db.entity;
 
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

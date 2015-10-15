@@ -6,6 +6,7 @@
 package se.liu.ida.tdp024.account.data.api.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public interface Transaction extends Serializable {
 

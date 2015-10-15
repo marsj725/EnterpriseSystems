@@ -5,6 +5,8 @@
  */
 package se.liu.ida.tdp024.account.logic.impl.facade;
 
+import java.util.ArrayList;
+import java.util.List;
 import se.liu.ida.tdp024.account.data.api.entity.Account;
 import se.liu.ida.tdp024.account.data.api.entity.Transaction;
 import se.liu.ida.tdp024.account.data.api.entity.User;
@@ -26,13 +28,19 @@ public class TransactionLogicFacadeImpl implements TransactionLogicFacade {
     private static final AccountJsonSerializer jsonSerializer = new AccountJsonSerializerImpl();  
     private AccountEntityFacade accountEntityFacade;
     private TransactionEntityFacade transactionEntityFacade;
+    
+    public TransactionLogicFacadeImpl(TransactionEntityFacade transactionEntityFacade){
+        this.transactionEntityFacade = transactionEntityFacade;
+    }
 
     @Override
-    public Transaction find(String name) {
-        String userResponse = httpHelper.get("http://enterprise-systems.appspot.com/person" + "/find.name/", "name", name); 
-        User user = jsonSerializer.fromJson(userResponse, UserType.class);
-        //Account account = accountEntityFacade.find(user.getKey());
-        return transactionEntityFacade.find(1);
+    public List<Transaction> find(long id) {
+        List<Transaction> transaktioner = new ArrayList();
+        try{    
+            transaktioner = this.transactionEntityFacade.find(id);
+            return transaktioner;
+        }catch(Exception e){
+            return transaktioner;    
+        }
     }
-    
 }

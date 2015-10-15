@@ -7,15 +7,22 @@ import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 import se.liu.ida.tdp024.account.data.api.entity.Account;
+import se.liu.ida.tdp024.account.data.api.entity.Transaction;
+import se.liu.ida.tdp024.account.data.api.facade.TransactionEntityFacade;
 import se.liu.ida.tdp024.account.data.impl.db.facade.AccountEntityFacadeDB;
+import se.liu.ida.tdp024.account.data.impl.db.facade.TransactionEntityFacadeDB;
 import se.liu.ida.tdp024.account.logic.api.facade.AccountLogicFacade;
+import se.liu.ida.tdp024.account.logic.api.facade.TransactionLogicFacade;
 import se.liu.ida.tdp024.account.logic.impl.facade.AccountLogicFacadeImpl;
+import se.liu.ida.tdp024.account.logic.impl.facade.TransactionLogicFacadeImpl;
 import se.liu.ida.tdp024.account.util.json.AccountJsonSerializer;
 import se.liu.ida.tdp024.account.util.json.AccountJsonSerializerImpl;
 
 @Path("/account")
 public class AccountService {
-    private final AccountLogicFacade accountLogicFacade = new AccountLogicFacadeImpl(new AccountEntityFacadeDB());
+    private final TransactionEntityFacade transactionEntityFacade = new TransactionEntityFacadeDB();
+    private final AccountLogicFacade accountLogicFacade = new AccountLogicFacadeImpl(new AccountEntityFacadeDB(),transactionEntityFacade);
+    private final TransactionLogicFacade transactionLogicFacade = new TransactionLogicFacadeImpl(transactionEntityFacade);
     private static final AccountJsonSerializer jsonSerializer = new AccountJsonSerializerImpl();
     
     @GET
@@ -24,8 +31,7 @@ public class AccountService {
         @QueryParam("accounttype") String accounttype,
         @QueryParam("name") String name,
         @QueryParam("bank") String bank){
-        return Response.ok().entity(this.accountLogicFacade.create(accounttype, name, bank)).build();
-        
+        return Response.ok().entity(this.accountLogicFacade.create(accounttype, name, bank)).build();  
     }
     @GET
     @Path("debit")
@@ -48,14 +54,18 @@ public class AccountService {
     public Response findName(
             @QueryParam("name") String name){
             List<Account> account = accountLogicFacade.find(name);
-            Genson sa = new Genson();
-        return Response.ok().build();
+            Genson genson = new Genson();
+            String json = genson.serialize(account);
+        return Response.ok().entity(json).build();
     }
     @GET
     @Path("transactions")
     public Response transactions(
             @QueryParam("id") long id){
-        return Response.ok().build();
+            List<Transaction> transactions = transactionLogicFacade.find(id);
+            Genson genson = new Genson();
+            String json = genson.serialize(transactions);
+        return Response.ok().entity(json).build();
     }
     
 }

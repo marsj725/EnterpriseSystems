@@ -9,6 +9,7 @@ import se.liu.ida.tdp024.account.data.api.entity.User;
 import se.liu.ida.tdp024.account.data.api.facade.AccountEntityFacade;
 import se.liu.ida.tdp024.account.data.api.util.StorageFacade;
 import se.liu.ida.tdp024.account.data.impl.db.facade.AccountEntityFacadeDB;
+import se.liu.ida.tdp024.account.data.impl.db.facade.TransactionEntityFacadeDB;
 import se.liu.ida.tdp024.account.data.impl.db.facade.UserType;
 import se.liu.ida.tdp024.account.data.impl.db.util.StorageFacadeDB;
 import se.liu.ida.tdp024.account.logic.api.facade.AccountLogicFacade;
@@ -24,7 +25,7 @@ public class AccountLogicFacadeTest {
     //--- Unit under test ---//
     private static final HTTPHelper httpHelper = new HTTPHelperImpl();
     private static final AccountJsonSerializer jsonSerializer = new AccountJsonSerializerImpl();  
-    private AccountLogicFacade accountLogicFacade = new AccountLogicFacadeImpl(new AccountEntityFacadeDB());
+    private AccountLogicFacade accountLogicFacade = new AccountLogicFacadeImpl(new AccountEntityFacadeDB(),new TransactionEntityFacadeDB());
     private StorageFacade storageFacade = new StorageFacadeDB();
     
     public AccountLogicFacadeTest(){
@@ -39,20 +40,17 @@ public class AccountLogicFacadeTest {
     @Test
     public void testCreateFind() {
         
-        String accountType = "CREDITCARD";
+        String accountType = "CREDIT";
         String name = "Marcus Bendtsen";
         String bank = "SWEDBANK";
         String konto = accountLogicFacade.create(accountType, name, bank);
         List<Account> account = accountLogicFacade.find(name);
         
         String nameBankKey = httpHelper.get("http://enterprise-systems.appspot.com/bank" + "/find.name/", "name", bank);
-        String userBankKey = httpHelper.get("http://enterprise-systems.appspot.com/bank" + "/find.key/", "key", account.get(0).getBankKey());
-        User bankUser = jsonSerializer.fromJson(nameBankKey, UserType.class);
-        User bankKey = jsonSerializer.fromJson(userBankKey, UserType.class);    
+        User bankUser = jsonSerializer.fromJson(nameBankKey, UserType.class);  
 
         Assert.assertEquals("OK", konto);
         Assert.assertEquals(accountType, account.get(0).getAccountType());
-        Assert.assertEquals(bankUser.getName(), bankKey.getName());
     }
     
     @Test
