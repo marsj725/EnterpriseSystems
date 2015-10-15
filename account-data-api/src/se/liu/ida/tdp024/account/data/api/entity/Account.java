@@ -7,9 +7,9 @@ public interface Account extends Serializable {
     
     public void setId(long id);
     
-    public String getPersonalKey();
+    public String getPersonKey();
     
-    public void setPersonalKey(String personalKey);
+    public void setPersonKey(String personalKey);
     
     public String getBankKey();
     

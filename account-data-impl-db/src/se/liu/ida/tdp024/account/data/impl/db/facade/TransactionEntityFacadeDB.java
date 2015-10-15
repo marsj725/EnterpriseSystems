@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import se.liu.ida.tdp024.account.data.api.entity.Account;
 import se.liu.ida.tdp024.account.data.api.entity.Transaction;
 import se.liu.ida.tdp024.account.data.api.facade.TransactionEntityFacade;
 import se.liu.ida.tdp024.account.data.impl.db.entity.TransactionDB;
@@ -26,7 +27,7 @@ import se.liu.ida.tdp024.account.util.json.AccountJsonSerializerImpl;
 public class TransactionEntityFacadeDB implements TransactionEntityFacade {
 
     @Override
-    public Transaction create(long accountid, String type, long amount, String status) {
+    public Transaction create(Account account, String type, long amount, String status) {
         
         EntityManager em = EMF.getEntityManager();
         Transaction transaction = new TransactionDB();
@@ -34,9 +35,9 @@ public class TransactionEntityFacadeDB implements TransactionEntityFacade {
         try{
             String datum = new Date().toString();
             em.getTransaction().begin();
-            transaction.setAccountId(accountid);
+            transaction.setAccount(account);
             transaction.setAmount(amount);
-            transaction.setDate(datum);
+            transaction.setCreated(datum);
             transaction.setType(type);
             transaction.setStatus(status);
 
@@ -45,7 +46,7 @@ public class TransactionEntityFacadeDB implements TransactionEntityFacade {
             
             return transaction;
         }catch (Exception e){
-            transaction.setId(999);
+            System.out.println("ERROR OCCURED!");
             return transaction;
         }finally{
             if(em.getTransaction().isActive()){
@@ -60,7 +61,7 @@ public class TransactionEntityFacadeDB implements TransactionEntityFacade {
        String response = null;
        List<Transaction> returnList = new ArrayList();
        try{
-            Query query = em.createQuery("SELECT c FROM TransactionDB c WHERE c.id = :id ");
+            Query query = em.createQuery("SELECT c FROM TransactionDB c WHERE c.account.id = :id ");
             query.setParameter("id", id);
             returnList = query.getResultList();
            return returnList;

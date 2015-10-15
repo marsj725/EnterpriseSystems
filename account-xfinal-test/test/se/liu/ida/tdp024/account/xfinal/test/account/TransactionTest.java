@@ -163,10 +163,7 @@ public class TransactionTest {
             AccountDTO refreshedAccountDTO = jsonSerializer.fromJson(checkJson, AccountDTO[].class)[0];
             Assert.assertEquals(0, refreshedAccountDTO.getHoldings());
         }
-
-
     }
-    
     @Test
     public void testCreditConcurrency() {
         

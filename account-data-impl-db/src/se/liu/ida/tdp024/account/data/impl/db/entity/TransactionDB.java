@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import se.liu.ida.tdp024.account.data.api.entity.Account;
 import se.liu.ida.tdp024.account.data.api.entity.Transaction;
 
 @Entity
@@ -18,6 +19,7 @@ public class TransactionDB implements Transaction {
     private String type;
     private String dateStamp;
     private String status;
+    private Account account;
     
     @Override
     public void setId(long id) {
@@ -50,12 +52,12 @@ public class TransactionDB implements Transaction {
     }
 
     @Override
-    public String getDate() {
+    public String getCreated() {
         return dateStamp;
     }
 
     @Override
-    public void setDate(String dateStamp) {
+    public void setCreated(String dateStamp) {
         this.dateStamp = dateStamp;
     }
 
@@ -69,14 +71,15 @@ public class TransactionDB implements Transaction {
         this.status = status;
     }
 
+
     @Override
-    public void setAccountId(long accountid) {
-        this.accountid = accountid;
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     @Override
-    public long getAccountId() {
-        return accountid;
+    public Account getAccount() {
+        return account;
     }
     
 }

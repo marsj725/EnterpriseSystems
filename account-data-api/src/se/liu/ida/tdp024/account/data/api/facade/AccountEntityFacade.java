@@ -9,6 +9,8 @@ public interface AccountEntityFacade {
     
     public List<Account> find(String name);
     
+    public Account findAccountByID(long id);
+    
     public Boolean debit(long id,long debiteras);
     
     public Boolean kredit(long id,long krediteras);

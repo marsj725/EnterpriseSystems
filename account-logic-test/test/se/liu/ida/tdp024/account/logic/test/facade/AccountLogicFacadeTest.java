@@ -40,7 +40,7 @@ public class AccountLogicFacadeTest {
     @Test
     public void testCreateFind() {
         
-        String accountType = "CREDIT";
+        String accountType = "SAVINGS";
         String name = "Marcus Bendtsen";
         String bank = "SWEDBANK";
         String konto = accountLogicFacade.create(accountType, name, bank);
@@ -74,9 +74,16 @@ public class AccountLogicFacadeTest {
         
         debit = accountLogicFacade.debit(account.get(0).getId(), 10);
         Assert.assertEquals(true, debit);
-        System.out.println("Kredit: " + kredit);
         
-        debit = accountLogicFacade.debit(account.get(0).getId(), 10);
+        kredit = accountLogicFacade.credit(account.get(0).getId(), 10);
+        Assert.assertEquals(true, kredit);
+        
+        kredit = accountLogicFacade.credit(account.get(0).getId(), 10);
+        Assert.assertEquals(true, kredit);
+        
+
+        
+        debit = accountLogicFacade.debit(account.get(0).getId(), 30);
         Assert.assertEquals(false, debit);
     }
 }

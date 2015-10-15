@@ -12,14 +12,14 @@ public interface Transaction extends Serializable {
 
     public long getId();
     public void setId(long id);
-    public void setAccountId(long accountid);
-    public long getAccountId();
     public String getType();
     public void setType(String type);
     public long getAmount();
     public void setAmount(long amount);
-    public String getDate();
-    public void setDate(String dateStamp);
+    public String getCreated();
+    public void setCreated(String dateStamp);
     public String getStatus();
     public void setStatus(String status);
+    public void setAccount(Account account);
+    public Account getAccount();
 }

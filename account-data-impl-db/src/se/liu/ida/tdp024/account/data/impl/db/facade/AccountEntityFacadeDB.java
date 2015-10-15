@@ -32,7 +32,7 @@ public class AccountEntityFacadeDB implements AccountEntityFacade {
             em.getTransaction().begin();
             account.setHoldings(0);
             account.setAccountType(accountType);
-            account.setPersonalKey(nameKey);
+            account.setPersonKey(nameKey);
             account.setBankKey(bankKey);
             em.persist(account);
             em.getTransaction().commit();
@@ -56,8 +56,8 @@ public class AccountEntityFacadeDB implements AccountEntityFacade {
        String response = null;
        Account temp = new AccountDB();
        try{
-           Query query = em.createQuery("SELECT c FROM AccountDB c WHERE c.personalKey = :personalKey ");
-           query.setParameter("personalKey", nameKey);
+           Query query = em.createQuery("SELECT c FROM AccountDB c WHERE c.personKey = :personKey ");
+           query.setParameter("personKey", nameKey);
            accountList = query.getResultList();
            return accountList;
         }catch(Exception e){
@@ -119,6 +119,21 @@ public class AccountEntityFacadeDB implements AccountEntityFacade {
                 em.getTransaction().rollback();
             }
             em.close();
+        }
+    }
+
+    @Override
+    public Account findAccountByID(long id) {
+        EntityManager em = EMF.getEntityManager();
+        Account konto = null;
+        try{
+            em.getTransaction().begin();
+            Query query = em.createQuery("SELECT c FROM AccountDB c WHERE c.id = :id ");
+            query.setParameter("id", id);
+            konto = (Account) query.getSingleResult();
+            return konto;
+        }catch(Exception e){
+            return konto;
         }
     }
 }

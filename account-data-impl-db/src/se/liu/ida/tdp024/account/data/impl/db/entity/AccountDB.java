@@ -13,7 +13,7 @@ public class AccountDB implements Account {
     private long id;
     
     private String accountType;
-    private String personalKey;
+    private String personKey;
     private String bankKey;
     private long holdings;
     
@@ -32,13 +32,13 @@ public class AccountDB implements Account {
     }
 
     @Override
-    public String getPersonalKey() {
-        return personalKey;
+    public String getPersonKey() {
+        return personKey;
     }
 
     @Override
-    public void setPersonalKey(String personalKey) {
-        this.personalKey = personalKey;        
+    public void setPersonKey(String personKey) {
+        this.personKey = personKey;        
     }
 
     @Override

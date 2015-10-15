@@ -55,14 +55,14 @@ public class AccountService {
             @QueryParam("name") String name){
             List<Account> account = accountLogicFacade.find(name);
             Genson genson = new Genson();
-            String json = genson.serialize(account);
+            String json = genson.serialize(account);         
         return Response.ok().entity(json).build();
     }
     @GET
     @Path("transactions")
     public Response transactions(
             @QueryParam("id") long id){
-            List<Transaction> transactions = transactionLogicFacade.find(id);
+            List<Transaction> transactions = accountLogicFacade.findTransaction(id);
             Genson genson = new Genson();
             String json = genson.serialize(transactions);
         return Response.ok().entity(json).build();
