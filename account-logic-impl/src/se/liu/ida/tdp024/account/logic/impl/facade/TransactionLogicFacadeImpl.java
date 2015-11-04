@@ -40,7 +40,8 @@ public class TransactionLogicFacadeImpl implements TransactionLogicFacade {
             transaktioner = this.transactionEntityFacade.find(id);
             return transaktioner;
         }catch(Exception e){
-            return transaktioner;    
+            System.out.println("----------------> FAILED @ TRANS_FIND :: id: "+id+"<----------------");
+            return null;    
         }
     }
 }

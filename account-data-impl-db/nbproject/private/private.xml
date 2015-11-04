@@ -5,6 +5,7 @@
         <group>
             <file>file:/home/marsj725/TDP024/EnterpriseSystems/account-data-impl-db/src/se/liu/ida/tdp024/account/data/impl/db/facade/AccountEntityFacadeDB.java</file>
             <file>file:/home/marsj725/TDP024/EnterpriseSystems/account-data-impl-db/src/se/liu/ida/tdp024/account/data/impl/db/entity/TransactionDB.java</file>
+            <file>file:/home/marsj725/TDP024/EnterpriseSystems/account-data-impl-db/src/se/liu/ida/tdp024/account/data/impl/db/facade/UserType.java</file>
             <file>file:/home/marsj725/TDP024/EnterpriseSystems/account-data-impl-db/src/se/liu/ida/tdp024/account/data/impl/db/entity/AccountDB.java</file>
             <file>file:/home/marsj725/TDP024/EnterpriseSystems/account-data-impl-db/src/se/liu/ida/tdp024/account/data/impl/db/facade/TransactionEntityFacadeDB.java</file>
         </group>

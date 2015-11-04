@@ -183,7 +183,7 @@ public class TransactionTest {
 
         
         //Create lots of small credits
-        final int size = 1000;
+        final int size = 10;
         final int amount = 10;
         List<Thread> threads = new ArrayList<Thread>();
         for (int i = 0; i < size; i++) {

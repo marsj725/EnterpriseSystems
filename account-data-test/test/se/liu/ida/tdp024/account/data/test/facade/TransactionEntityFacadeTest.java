@@ -42,19 +42,22 @@ public class TransactionEntityFacadeTest {
         String kredit;
         String status = "OK";
         String type = "DEBIT";
+        Transaction transaction;
+        List<Transaction> result;
+        Account konto = accountEntityFacade.create(accountType, name, bank);
         
-        //Account konto = accountEntityFacade.create(accountType, name, bank);
-        //System.out.println("KEY:"+konto.getId());
+        transaction = transactionEntityFacade.create(konto,"DEBIT", 10, status);
         
-        Transaction transaction = transactionEntityFacade.create(1, type, 0, status);
+        result = transactionEntityFacade.find(konto.getId());
+        transaction = transactionEntityFacade.create(konto,"DEBIT", 20, status);
+        transaction = transactionEntityFacade.create(konto,"CREDIT", 40, "FAILED");
         
-        System.out.println("TRANSACTION_KEY:"+transaction.getId());
-        
-        List<Transaction> result = transactionEntityFacade.find(transaction.getId());
-        
-        Assert.assertEquals(transaction.getId(), result.get(0).getId());
-        Assert.assertEquals(0, result.get(0).getAmount());
-        Assert.assertEquals(status, result.get(0).getStatus());
+        result = transactionEntityFacade.find(konto.getId());
+
+        Assert.assertEquals(10, result.get(0).getAmount());
+        Assert.assertEquals(20, result.get(1).getAmount());
+        Assert.assertEquals(40, result.get(2).getAmount());
+  
         System.out.println(transaction.getId() + " : "+result.get(0).getId());
         
     }

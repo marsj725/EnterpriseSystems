@@ -81,8 +81,6 @@ public class AccountLogicFacadeTest {
         kredit = accountLogicFacade.credit(account.get(0).getId(), 10);
         Assert.assertEquals(true, kredit);
         
-
-        
         debit = accountLogicFacade.debit(account.get(0).getId(), 30);
         Assert.assertEquals(false, debit);
     }

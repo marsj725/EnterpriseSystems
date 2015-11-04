@@ -20,6 +20,6 @@ public interface Transaction extends Serializable {
     public void setCreated(String dateStamp);
     public String getStatus();
     public void setStatus(String status);
-    public void setAccount(Account account);
+    public void setAccount(Account konto);
     public Account getAccount();
 }

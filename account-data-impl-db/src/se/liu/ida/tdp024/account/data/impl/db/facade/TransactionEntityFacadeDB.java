@@ -15,10 +15,6 @@ import se.liu.ida.tdp024.account.data.api.entity.Transaction;
 import se.liu.ida.tdp024.account.data.api.facade.TransactionEntityFacade;
 import se.liu.ida.tdp024.account.data.impl.db.entity.TransactionDB;
 import se.liu.ida.tdp024.account.data.impl.db.util.EMF;
-import se.liu.ida.tdp024.account.util.http.HTTPHelper;
-import se.liu.ida.tdp024.account.util.http.HTTPHelperImpl;
-import se.liu.ida.tdp024.account.util.json.AccountJsonSerializer;
-import se.liu.ida.tdp024.account.util.json.AccountJsonSerializerImpl;
 
 /**
  *
@@ -27,7 +23,7 @@ import se.liu.ida.tdp024.account.util.json.AccountJsonSerializerImpl;
 public class TransactionEntityFacadeDB implements TransactionEntityFacade {
 
     @Override
-    public Transaction create(Account account, String type, long amount, String status) {
+    public Transaction create(Account account,String type, long amount, String status) {
         
         EntityManager em = EMF.getEntityManager();
         Transaction transaction = new TransactionDB();
@@ -47,6 +43,7 @@ public class TransactionEntityFacadeDB implements TransactionEntityFacade {
             return transaction;
         }catch (Exception e){
             System.out.println("ERROR OCCURED!");
+            e.printStackTrace();
             return transaction;
         }finally{
             if(em.getTransaction().isActive()){
@@ -61,16 +58,16 @@ public class TransactionEntityFacadeDB implements TransactionEntityFacade {
        String response = null;
        List<Transaction> returnList = new ArrayList();
        try{
-            Query query = em.createQuery("SELECT c FROM TransactionDB c WHERE c.account.id = :id ");
-            query.setParameter("id", id);
+            Query query = em.createQuery("SELECT c FROM TransactionDB c WHERE c.account.id = :accountId");
+            query.setParameter("accountId", id);
             returnList = query.getResultList();
+            System.out.println("Query working!");
            return returnList;
         }catch(Exception e){
-            return returnList;
+            e.printStackTrace();
+            return null;
         }finally{
             em.close();
         }
     }
-
-    
 }

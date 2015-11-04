@@ -35,6 +35,7 @@ public class AccountLogicFacadeImpl implements AccountLogicFacade {
             accounts = accountEntityFacade.find(user.getKey());
             return accounts;
         }catch(Exception e){
+            System.out.println("----------------> FAILED @ FIND ACCOUNT :: NAME: "+name+"<----------------");
             return accounts;
         }
     }
@@ -42,6 +43,7 @@ public class AccountLogicFacadeImpl implements AccountLogicFacade {
     @Override
     public String create(String accountType, String name, String bank) {
         String returnStatus = "FAILED";
+        System.out.println("Name: "+name+" Bank: "+bank);
         try{
             String bankResponse = httpHelper.get("http://enterprise-systems.appspot.com/bank" + "/find.name/", "name", bank);
             String userResponse = httpHelper.get("http://enterprise-systems.appspot.com/person" + "/find.name/", "name", name); 
@@ -62,7 +64,7 @@ public class AccountLogicFacadeImpl implements AccountLogicFacade {
                 return "FAILED";
             }
         }catch(Exception e){
-            System.out.println("FAIL @ E");
+            System.out.println("----------------> FAILED @ CREATE :: NAME: "+name+" ACCOUNTT: "+accountType+" BANK: "+bank+"<----------------");
             return "FAILED";
         }
     }
@@ -75,10 +77,11 @@ public class AccountLogicFacadeImpl implements AccountLogicFacade {
             Boolean accountStatus = accountEntityFacade.kredit(id, credit);
             if(accountStatus){status = "OK";}
             else{status = "FAILED";}
-            transactionEntityFacade.create(account, "credit", credit, status);
+            transactionEntityFacade.create(account,"CREDIT", credit, status);
             System.out.println("Transaction C created S:"+status+" c:"+credit);
             return accountStatus;
         }catch(Exception e){
+            System.out.println("----------------> FAILED @ CREDIT :: ID: "+id+" CREDIT: "+credit+" <----------------");
             return false;
         }
     }
@@ -91,10 +94,11 @@ public class AccountLogicFacadeImpl implements AccountLogicFacade {
             Boolean accountStatus = accountEntityFacade.debit(id, debit);
             if(accountStatus){status = "OK";}
             else{status = "FAILED";}
-            transactionEntityFacade.create(account, "debit", debit, status);
+            transactionEntityFacade.create(account,"DEBIT", debit, status);
             System.out.println("Transaction D created S:"+status+" d:"+debit);
             return accountStatus;
         }catch(Exception e){
+            System.out.println("----------------> FAILED @ DEBIT :: ID: "+id+" DEBIT: "+debit+" <----------------");
             return false;
         }
     }

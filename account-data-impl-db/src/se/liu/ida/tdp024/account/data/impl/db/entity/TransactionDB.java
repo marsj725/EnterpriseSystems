@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import se.liu.ida.tdp024.account.data.api.entity.Account;
 import se.liu.ida.tdp024.account.data.api.entity.Transaction;
 
@@ -13,12 +15,11 @@ public class TransactionDB implements Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-                 
-    private long accountid;
     private long amount;
     private String type;
     private String dateStamp;
     private String status;
+    @ManyToOne(targetEntity = AccountDB.class)
     private Account account;
     
     @Override
@@ -69,17 +70,15 @@ public class TransactionDB implements Transaction {
     @Override
     public void setStatus(String status) {
         this.status = status;
-    }
-
+    }    
 
     @Override
-    public void setAccount(Account account) {
-        this.account = account;
+    public void setAccount(Account konto) {
+        this.account = konto;
     }
 
     @Override
     public Account getAccount() {
         return account;
     }
-    
 }
